@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Camagru - Login</title>
+    <title>Camagru - Registration</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans">
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="login">
-      <h1>MEMBER LOGIN</h1>
-      <form action="login.php" method="POST">
+      <h1>MEMBER REGISTRATION</h1>
+      <form action="register.php" method="POST">
         <label for "username">
           <i class="fa-solid fa-user"></i>
         </label>
@@ -18,11 +18,14 @@
           <i class="fa-solid fa-lock"></i>
         </label>
         <input type="password" name="password" placeholder="Password" required/>
-        <input value="LOGIN" type="submit" />
+        <label for="email">
+          <i class="fa-solid fa-lock"></i>
+        </label>
+        <input type="text" name="email" placeholder="Email" required/>
+        <input value="REGISTER" type="submit" />
       </form>
-      <p class="subtext">Forgot password ? <a href="#">Click here</a></p>
       <div class="divider"></div>
-      <a href="/register.html"><button>REGISTER</button></a>
+      <a href="#"><button>LOGIN</button></a>
     </div>
     <script src="https://kit.fontawesome.com/5aa08eb32c.js" crossorigin="anonymous"></script>
   </body>

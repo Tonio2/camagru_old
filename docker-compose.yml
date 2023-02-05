@@ -1,23 +1,42 @@
 version: "3"
 services:
+  mariadb:
+    image: mariadb
+    restart: always
+    networks: 
+      - internal
+    environment:
+      MYSQL_ROOT_PASSWORD: camagru
+      MYSQL_DATABASE: camagru
+    volumes:
+      - db:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
   nginx:
     build:
       context: .
       dockerfile: nginx/Dockerfile
     ports: 
-      - "8080:80"
+      - "80:80"
     networks:
       - internal
     volumes:
       - ./data/:/var/www/html/
       - ./logs/nginx:/var/log/nginx/
   php:
-    image: php:fpm-alpine
+    build:
+      dockerfile: php/Dockerfile
     networks:
       - internal
     volumes:
       - ./data/:/var/www/html/
-      - ./logs/php.log:/var/log/fpm-php.www.log
 networks:
   internal:
     driver: bridge
+volumes:
+  db:
