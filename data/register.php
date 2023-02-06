@@ -22,10 +22,17 @@
 	      exit('Password must be between 5 and 20 characters long!');
       }
 
-      $req = $pdo->prepare("INSERT INTO User (username, password, email) values (:username, :password, :email)");
+      $req = $pdo->prepare("INSERT INTO User (username, password, email, activation_code) values (:username, :password, :email, :activation_code)");
       $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-      if ( $req->execute(["username" => $_POST["username"], "password" => $password, "email" => $_POST["email"]]) ) {
-        echo 'Registration succesful';
+      $unique_id = uniqid();
+      if ( $req->execute(["username" => $_POST["username"], "password" => $password, "email" => $_POST["email"], "activation_code" => $unique_id]) ) {
+        $from    = 'noreply@camagru.com';
+        $subject = 'Account Activation Required';
+        $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
+        $activate_link = 'http://yourdomain.com/phplogin/activate.php?email=' . $_POST['email'] . '&code=' . $unique_id;
+        $message = '<p>Please click the following link to activate your account: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
+        mail($_POST['email'], $subject, $message, $headers);
+        echo 'Please check your email to activate your account!';
       } else {
         echo 'Something went wrong';
       }
