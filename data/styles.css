@@ -1,68 +1,75 @@
 body {
   box-sizing: border-box;
   background: url('background.png');
+  margin: 0;
 }
 
 #login {
-    font-family: 'Open Sans';
-  	width: 350px;
-  	background: linear-gradient(#ff6560de, #572f40dd);
-  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-  	margin: 200px auto;
-    padding: 20px 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  font-family: 'Open Sans';
+  width: 350px;
+  background: linear-gradient(#ff6560de, #572f40dd);
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  margin: 200px auto;
+  padding: 20px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #login h1 {
-  	text-align: center;
-  	color: #425266;
-  	font-size: 26px;
-    letter-spacing: 0.06em;
+  text-align: center;
+  color: #425266;
+  font-size: 26px;
+  letter-spacing: 0.06em;
 }
+
 #login form {
-  	display: flex;
-  	flex-wrap: wrap;
-  	justify-content: center;
-  	padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
 }
+
 #login form label {
-  	display: flex;
-  	justify-content: center;
-  	align-items: center;
-  	width: 60px;
-  	height: 60px;
-  	background-color: #000b;
-  	color: #ffffff;
-    font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: #000b;
+  color: #ffffff;
+  font-size: 16px;
 }
-#login form input[type="password"], #login form input[type="text"] {
-  	width: 250px;
-  	height: 60px;
-  	margin-bottom: 20px;
-    background-color: #000a;
-    color: #DDD;
-  	padding: 0 15px;
-    border: none;
-    font-size: 16px;
+
+#login form input[type="password"],
+#login form input[type="text"] {
+  width: 250px;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #000a;
+  color: #DDD;
+  padding: 0 15px;
+  border: none;
+  font-size: 16px;
 }
+
 #login form input[type="submit"] {
-  	width: 80%;
-  	padding: 10px;
- 	  margin-top: 10px;
-  	background-color: #ddd;
-  	border: 0;
-  	cursor: pointer;
-  	color: #222;
-  	transition: background-color 0.2s;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Open Sans';
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #ddd;
+  border: 0;
+  cursor: pointer;
+  color: #222;
+  transition: background-color 0.2s;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Open Sans';
 }
+
 #login form input[type="submit"]:hover {
-	background-color: #2868c7;
-  	transition: background-color 0.2s;
+  background-color: #ee2821d9;
+  transition: background-color 0.2s;
 }
 
 .subtext {
@@ -96,3 +103,90 @@ button {
   font-weight: bold;
   font-size: 16px;
 }
+
+
+/* NAVBAR */
+.navbar {
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #3E606F;
+  border-radius: 0px 0px 6px 6px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  float: right;
+  margin-top: 30px;
+}
+
+.navbar ul li {
+  float: left;
+  font-family: 'Noto Serif', serif;
+}
+
+.navbar ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 28px;
+  text-decoration: none;
+}
+
+.navbar ul li a:hover {
+  color: #B9E6F2;
+  background-color: #334F5C;
+}
+
+/* LOGO */
+.navbar .logo {
+  float: left;
+  padding-top: 5px;
+  padding-left: 40px;
+}
+
+.navbar .logo h1 {
+  color: #B9E6F2;
+  font-size: 3em;
+  letter-spacing: 5px;
+  font-weight: 100;
+  font-family: 'Tangerine', cursive;
+}
+
+ /* The Modal (background) */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  border-left: 6px solid red;
+  width: 400px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 

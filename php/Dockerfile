@@ -1,14 +1,28 @@
 FROM php:7-fpm
 
-RUN apt-get update && \
-    apt-get install -y \
-    zlib1g-dev libzip-dev sendmail
+RUN apt-get update && apt-get upgrade -y
 
-RUN echo "sendmail_path=/usr/sbin/sendmail -t -i" >> /usr/local/etc/php/conf.d/sendmail.ini
+# PDO Mysql
+############################################
 RUN docker-php-ext-install pdo pdo_mysql
 
-RUN sed -i '/#!\/bin\/sh/aservice sendmail restart' /usr/local/bin/docker-php-entrypoint
+# sendmail config
+############################################
+RUN apt-get install -y ssmtp mailutils
 
-RUN sed -i '/#!\/bin\/sh/aecho "$(hostname -i)\t$(hostname) $(hostname).localhost" >> /etc/hosts' /usr/local/bin/docker-php-entrypoint
+# root is the person who gets all mail for userids < 1000
+RUN echo "root=labalette.antoine@gmail.com" >> /etc/ssmtp/ssmtp.conf
 
-RUN rm -rf /var/lib/apt/lists/*
+# Here is the gmail configuration (or change it to your private smtp server)
+RUN echo "mailhub=smtp.gmail.com:465" >> /etc/ssmtp/ssmtp.conf
+RUN echo "FromLineOverride=YES" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthUser=labalette.antoine@gmail.com" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthPass=lynnuqfxidklnscs" >> /etc/ssmtp/ssmtp.conf
+
+RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
+
+# Set up php sendmail config
+RUN echo "sendmail_path=sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini
+
+# Choose initial configuration
+RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
