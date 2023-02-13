@@ -28,7 +28,7 @@ services:
     networks:
       - internal
     volumes:
-      - ./data2/:/var/www/html/
+      - ./data/:/var/www/html/
       - ./logs/nginx:/var/log/nginx/
   php:
     build:
@@ -36,7 +36,7 @@ services:
     networks:
       - internal
     volumes:
-      - ./data2/:/var/www/html/
+      - ./data/:/var/www/html/
 networks:
   internal:
     driver: bridge
